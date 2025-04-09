@@ -1,0 +1,30 @@
+{
+  "name": "suber-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "compile": "tsc",
+    "compile:live": "tsc --watch",
+    "start": "nodemon dist/index.js"
+  },
+  "keywords": ["API", "REST", "express"],
+  "author": "Yaroslav Pavlynskyi",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.14.0",
+    "nodemon": "^3.1.9",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
