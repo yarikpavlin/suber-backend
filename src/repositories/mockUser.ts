@@ -1,7 +1,7 @@
 import { UUID } from "crypto";
 import { User } from "../models/user";
 import { Repository } from "./abstraction/repo";
-import * as mockData from '../mock/users.json';
+import mockData from '../mock/users.json';
 import { Nullable } from "../lib/types";
 
 export class MockUserRepository extends Repository<User, UUID> {
