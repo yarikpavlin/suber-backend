@@ -1,6 +1,7 @@
 import { UUID } from "crypto";
 import { Request, Response } from "express";
 import { MockUserRepository } from "../repositories/mockUser";
+import { ApiError } from "../lib/errors";
 
 const userRepo = new MockUserRepository();
 
@@ -23,6 +24,19 @@ const getUserById = async (req: Request, res: Response) => {
     }
 }
 
+const createUser = async (req: Request, res: Response) => {
+    try {
+        const user = await userRepo.create(req.body);
+        res.status(201).json(user);
+    } catch (error) {
+        if (error instanceof ApiError) {
+            res.status(error.statusCode).json({ error: error.message });
+        } else {
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    }
+}
+
 export {
-    getUserById, getUsers
+    getUserById, getUsers, createUser
 };
