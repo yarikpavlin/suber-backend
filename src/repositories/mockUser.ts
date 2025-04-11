@@ -6,6 +6,7 @@ import { Nullable } from "../lib/types";
 import { ApiError } from "../lib/errors";
 import fs from 'fs';
 import path from 'path';
+import bcrypt from 'bcryptjs';
 
 export class MockUserRepository extends Repository<User, UUID> {
     async readAll(): Promise<User[]> {
@@ -50,6 +51,7 @@ export class MockUserRepository extends Repository<User, UUID> {
 
         const newUser: User = {
             ...t,
+            password: bcrypt.hashSync(t.password, 10),
             id: randomUUID() as UUID,
             createdAt: new Date()
         };

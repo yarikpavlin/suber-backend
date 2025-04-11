@@ -1,12 +1,18 @@
-import express from "express";
+import express, { RequestHandler } from "express";
 import userRoutes from './routes/users';
+import authRoutes from './routes/auth';
+import dotenv from 'dotenv';
+import { apiKey } from "./midleware/auth";
+
+dotenv.config();
 
 const app = express();
-const PORT = 3030;
 
 app.use(express.json());
+app.use(apiKey as RequestHandler);
 app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on http://localhost:${process.env.PORT}`);
 });
