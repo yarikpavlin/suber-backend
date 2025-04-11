@@ -24,3 +24,10 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
+export const apiKey = (req: Request, res: Response, next: NextFunction) => {
+  const apiKey = req.headers['x-api-key'];
+  if (apiKey !== process.env.X_API_KEY) {
+    return res.status(401).json({ message: "Invalid API key" });
+  }
+  next();
+};
