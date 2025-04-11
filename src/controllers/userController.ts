@@ -1,9 +1,9 @@
 import { UUID } from "crypto";
 import { Request, Response } from "express";
-import { MockUserRepository } from "../repositories/mockUser";
-import { ApiError } from "../lib/errors";
+import { UserRepository } from "../repositories/user";
 
-const userRepo = new MockUserRepository();
+const userRepo = new UserRepository();
+
 
 const getUsers = async (req: Request, res: Response) => {
     const users = await userRepo.readAll();

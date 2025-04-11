@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { MockUserRepository } from "../repositories/mockUser";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { ApiError } from "../lib/errors";
-const userRepo = new MockUserRepository();
+import { UserRepository } from "../repositories/user";
+const userRepo = new UserRepository();
 
 const signup = async (req: Request, res: Response) => {
     try {

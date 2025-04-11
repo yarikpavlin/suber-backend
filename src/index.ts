@@ -3,8 +3,10 @@ import userRoutes from './routes/users';
 import authRoutes from './routes/auth';
 import dotenv from 'dotenv';
 import { apiKey } from "./midleware/auth";
+import { connectToDatabase } from "./db/mongoose";
 
 dotenv.config();
+connectToDatabase();
 
 const app = express();
 
