@@ -21,6 +21,13 @@ jobs:
         run: npm ci
 
       - name: Start API in background
+        env:
+            JWT_SECRET: ${{ secrets.JWT_SECRET }}
+            PORT: ${{ secrets.PORT }}
+            X_API_KEY: ${{ secrets.X_API_KEY }}
+            MONGO_USER: ${{ secrets.MONGO_USER }}
+            MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+            MONGO_CLUSTER_URI: ${{ secrets.MONGO_CLUSTER_URI }}
         run: |
           npm run compile
           npm start &
@@ -38,6 +45,8 @@ jobs:
           npm ci
 
       - name: Run API tests
+        env:
+              X_API_KEY: ${{ secrets.X_API_KEY }}
         run: |
           cd tests
           npx playwright test -g @api
