@@ -45,6 +45,8 @@ jobs:
           npm ci
 
       - name: Run API tests
+        env:
+              X_API_KEY: ${{ secrets.X_API_KEY }}
         run: |
           cd tests
           npx playwright test -g @api
