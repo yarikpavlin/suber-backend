@@ -1,27 +1,19 @@
 import { UUID } from "crypto";
 import { Request, Response } from "express";
 import { UserRepository } from "../repositories/user";
+import { handleApiResponse } from "../lib/apiResponse";
 
 const userRepo = new UserRepository();
 
-
 const getUsers = async (req: Request, res: Response) => {
-    const users = await userRepo.readAll();
-    if (users.length === 0) {
-        res.status(404).json({ error: 'No users found' });
-    } else {
-        res.status(200).json(users);
-    }
+    await handleApiResponse(res, async () => {
+        return userRepo.readAll();
+    });
 }
 
 const getUserById = async (req: Request, res: Response) => {
     const id = req.params.id as UUID;
-    const user = await userRepo.read(id);
-    if (!user) {
-        res.status(404).json({ error: 'User not found' });
-    } else {
-        res.status(200).json(user);
-    }
+    await handleApiResponse(res, () => userRepo.read(id));
 }
 
 export {

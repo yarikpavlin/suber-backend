@@ -3,29 +3,23 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { ApiError } from "../lib/errors";
 import { UserRepository } from "../repositories/user";
+import { handleApiResponse } from "../lib/apiResponse";
+
 const userRepo = new UserRepository();
 
 const signup = async (req: Request, res: Response) => {
-    try {
+    await handleApiResponse(res, async () => {
         const user = await userRepo.create(req.body);
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string);
-        res.status(201).header('Authorization', `Bearer ${token}`).json({id: user.id, email: user.email});
-    } catch (error) {
-        if (error instanceof ApiError) {
-            res.status(error.statusCode).json({ error: error.message });
-        } else {
-            res.status(500).json({ error: 'Internal server error' });
-        }
-    }
+        res.header('Authorization', `Bearer ${token}`);
+        return { id: user.id, email: user.email };
+    }, 201);
 }
 
 const login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await userRepo.findByEmail(email);
-    if (!user) {
-        return res.status(401).json({ message: 'Invalid credentials' });
-    }
-    if (!bcrypt.compareSync(password, user.password)) {
+    if (!user || !bcrypt.compareSync(password, user.password)) {
         return res.status(401).json({ message: 'Invalid credentials' });
     }
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string);

@@ -7,10 +7,18 @@ import bcrypt from "bcryptjs";
 
 export class UserRepository extends Repository<User, UUID> {
     async readAll(): Promise<User[]> {
-        return User.find({}, 'id email createdAt');
+        const users = await User.find({}, 'id email createdAt');
+        if (!users) {
+            throw new ApiError(404, 'No users found');
+        }
+        return users;
     }
     async read(id: UUID): Promise<Nullable<User>> {
-        return User.findOne({id: id}, 'id email createdAt');
+        const user = await User.findOne({id: id}, 'id email createdAt');
+        if (!user) {
+            throw new ApiError(404, 'User with id ' + id + ' not found');
+        }
+        return user;
     }
     async create(t: User): Promise<User> {
         if (!t.email || !t.password) {
