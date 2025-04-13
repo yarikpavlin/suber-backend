@@ -1,7 +1,6 @@
 import { Document, model, Schema } from "mongoose";
 
 export interface Subscription extends Document {
- id: string;
  userId: string;
  name: string;
  cost: number;
@@ -15,7 +14,6 @@ export interface Subscription extends Document {
 }
 
 const SubscriptionSchema = new Schema({
- id: { type: String, required: true },
  userId: { type: String, required: true, index: true },
  name: { type: String, required: true },
  cost: { type: Number, required: true },

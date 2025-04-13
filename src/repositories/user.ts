@@ -34,10 +34,10 @@ export class UserRepository extends Repository<User, UUID> {
         });
         return user.save();
     }
-    async update(t: User): Promise<User> {
+    update(id: UUID, t: Partial<User>): Promise<Nullable<User>> {
         throw new Error("Method not implemented.");
     }
-    async delete(t: User): Promise<User> {
+    async delete(id: string): Promise<Nullable<User>> {
         throw new Error("Method not implemented.");
     }   
 
