@@ -4,7 +4,7 @@ import authRoutes from './routes/auth';
 import subscriptionRoutes from './routes/subscriptions';
 
 import dotenv from 'dotenv';
-import { apiKey } from "./midleware/auth";
+import { apiKey } from "./middleware/auth";
 import { connectToDatabase } from "./db/mongoose";
 
 dotenv.config();

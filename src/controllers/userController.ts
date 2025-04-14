@@ -1,7 +1,7 @@
 import { UUID } from "crypto";
 import { Request, Response } from "express";
 import { UserRepository } from "../repositories/user";
-import { handleApiResponse } from "../lib/apiResponse";
+import { handleApiResponse } from "../lib/api/apiResponse";
 
 const userRepo = new UserRepository();
 

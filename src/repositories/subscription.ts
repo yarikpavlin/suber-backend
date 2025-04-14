@@ -1,6 +1,6 @@
-import { ApiError } from "../lib/errors";
-import { Nullable } from "../lib/types";
-import { Subscription } from "../models/subscriptions";
+import { ApiError } from "../lib/errors/apiError";
+import { Nullable } from "../lib/types/common";
+import { Subscription } from "../models/subscription";
 import { Repository } from "./abstraction/repo";
 import { Types } from "mongoose";
 
