@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { ApiError } from "../lib/errors";
 import { UserRepository } from "../repositories/user";
-import { handleApiResponse } from "../lib/apiResponse";
+import { handleApiResponse } from "../lib/api/apiResponse";
 
 const userRepo = new UserRepository();
 

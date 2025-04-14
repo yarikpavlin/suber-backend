@@ -1,4 +1,5 @@
-import { Nullable } from "../../lib/types";
+import { Nullable } from "../../lib/types/common";
+
 
 export abstract class Repository<T, K = string> {
     abstract readAll(): Promise<T[]>;

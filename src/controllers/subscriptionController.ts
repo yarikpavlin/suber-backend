@@ -1,7 +1,6 @@
-import { ApiError } from "../lib/errors";
 import { SubscriptionRepository } from "../repositories/subscription";
 import { Request, Response } from "express";
-import { handleApiResponse } from "../lib/apiResponse";
+import { handleApiResponse } from "../lib/api/apiResponse";
 
 const subscriptionRepo = new SubscriptionRepository();
 

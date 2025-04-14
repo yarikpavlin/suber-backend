@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { ApiError } from "./errors";
+import { ApiError } from "../errors/apiError";
 
 export const handleApiResponse = async (
     res: Response,

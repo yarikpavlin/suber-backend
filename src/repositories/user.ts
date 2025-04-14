@@ -1,8 +1,8 @@
 import { UUID } from "crypto";
 import { User } from "../models/user";
 import { Repository } from "./abstraction/repo";
-import { Nullable } from "../lib/types";
-import { ApiError } from "../lib/errors";
+import { Nullable } from "../lib/types/common";
+import { ApiError } from "../lib/errors/apiError";
 import bcrypt from "bcryptjs";
 
 export class UserRepository extends Repository<User, UUID> {
